@@ -16,8 +16,6 @@
 #
 # Git repo: https://github.com/wivill/labo_progra_II-2020.git
 #
-# Git subrepo: 
-#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Imports
