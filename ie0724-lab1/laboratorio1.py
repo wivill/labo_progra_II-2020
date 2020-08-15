@@ -14,9 +14,9 @@
 #   menores a un número provisto por el usuario desde la terminal. El
 #   algoritmo empleado es una versión de la Criba de Eratóstenes.
 #
-# Git repo:
+# Git repo: https://github.com/wivill/labo_progra_II-2020.git
 #
-# Git subrepo:
+# Git subrepo: 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -32,7 +32,7 @@ def criba(num_limite):
     lista_primos = [i for i in range(2, num_limite + 1)]
 
     # Iteramos sobre el rango desde 2 (primer número primo) hasta el tope
-    # provisto + 1. Se descarta los números ya incluidos en la lista y 
+    # provisto + 1. Se descartan los números ya incluidos en la lista y
     # solo conserva los que cumplan con el criterio del algoritmo.
     # Optimización falla para un límite bajo.
     if num_limite < 8:  
