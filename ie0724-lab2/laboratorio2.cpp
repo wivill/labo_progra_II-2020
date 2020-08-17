@@ -19,15 +19,19 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 */
 
-#include <iostream>
+#include <iostream> // Interacción básica con el usuario, prints, etc.
+#include <string> // Manipulación de strings.
+#include <cmath> // Operaciones matemáticas como sqrt.
 using namespace std;
 
+// Definición de variables a emplear durante la ejecición del programa.
 int num_puntos;
-double x1;
-double x2;
+float coord_x, coord_y;
 
 int main () {
-    num_puntos = 2;
-    cout << "Hi " << num_puntos << endl;
+    cout << "Este es un programa que le ayudará a calcular la distancia máxima y mínima entre cualquier par de puntos, entre una lista de puntos." << endl;
+    cout << "¿Cuántos puntos va a introducir?: ";
+    cin >> num_puntos;
+    cout << num_puntos << endl;
     return 0;
 }
