@@ -22,7 +22,7 @@
 #include <iostream> // Interacción básica con el usuario, prints, etc.
 #include <string> // Manipulación de strings.
 #include <cmath> // Operaciones matemáticas como sqrt.
-#include <vector> // Considerar alterlativas por temas de overhead.
+// #include <vector> // Considerar alterlativas por temas de overhead.
 using namespace std;
 
 // Definición de variables a emplear durante la ejecición del programa.
