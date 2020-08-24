@@ -104,10 +104,11 @@ int main () {
     }
 
     // Cálculo de distancia máxima y mínima entre los puntos.
-    for (int i = 0; i < num_puntos; i++) {
-        for (int j = 1; j < num_puntos; j++) {
+    for (int i = 0; i < num_puntos; ++i) {
+        for (int j = 1; j < num_puntos; ++j) {
             distancia = sqrt(pow(puntos[0][i] - puntos[0][j], 2) + pow(puntos[1][i] - puntos[1][j], 2));
             cout << distancia << endl;
+            
             // Revisa si es la primera ejecución para determinar cómo se asignará la distancia calculada.
             if (num_puntos == 2) {
                 dist_max = distancia;
@@ -191,7 +192,7 @@ int main () {
         delete [] puntos[i];
         delete [] puntos_max[i];
         delete [] puntos_min[i];
-        
+
     }
 
     delete [] puntos;
