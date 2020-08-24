@@ -104,19 +104,15 @@ int main () {
     }
 
     // Cálculo de distancia máxima y mínima entre los puntos.
-    for (int i = 0; i < num_puntos; ++i) {
+    for (int i = 0; i < num_puntos - 1; ++i) {
         for (int j = 1; j < num_puntos; ++j) {
             distancia = sqrt(pow(puntos[0][i] - puntos[0][j], 2) + pow(puntos[1][i] - puntos[1][j], 2));
             cout << distancia << endl;
-            
-            // Revisa si es la primera ejecución para determinar cómo se asignará la distancia calculada.
-            if (num_puntos == 2) {
-                dist_max = distancia;
-                continue;
 
-            } else if (i == 0 && j == 1) {
-                dist_max = distancia;
-                dist_min = distancia;
+            // Revisa si es la primera ejecución para determinar cómo se asignará la distancia calculada.
+            if (i == 0 && j == 1) {
+                dist_max = 0;
+                dist_min = 0;
 
             } else if (distancia == dist_min) {
                 // Si la distancia calculada es igual a la distancia mínima, se agrega el par de puntos resultante
@@ -164,22 +160,20 @@ int main () {
  
     // Procedemos a imprimir los resultados.
     if (num_puntos == 2) {
-        cout << "La distancia entre los puntos (" << puntos[0][0] << coma << puntos[1][0] << ") y (" << puntos[0][1] << coma << puntos[1][1] << ") es: " << dist_max << "." << endl;
+        cout << "La distancia entre los puntos (" << puntos[0][0] << coma << puntos[1][0] << ") y (" << puntos[0][1] << coma << puntos[1][1] << ") es: " << distancia << "." << endl;
     
     } else {
         cout << "La distancia mínima se da entre los puntos: ";
 
         for (int m = 0; m < index_min; m = m + 2) {
-            cout << "(" << puntos_min[0][m] << coma << puntos_min[1][m] << ") y (" << puntos_min[0][m + 1] << coma << puntos_min[1][m + 1] << "), ";
+            cout << "(" << puntos_min[0][m] << coma << puntos_min[1][m] << ") y (" << puntos_min[0][m + 1] << coma << puntos_min[1][m + 1] << ") ";
 
         }
 
-        cout << endl;
-
-        cout << "La distancia máxima se da entre los puntos: ";
+        cout << endl << "La distancia máxima se da entre los puntos: ";
 
         for (int m = 0; m < index_max; m = m + 2) {
-            cout << "(" << puntos_max[0][m] << coma << puntos_max[1][m] << ") y (" << puntos_max[0][m + 1] << coma << puntos_max[1][m + 1] << "), ";
+            cout << "(" << puntos_max[0][m] << coma << puntos_max[1][m] << ") y (" << puntos_max[0][m + 1] << coma << puntos_max[1][m + 1] << ") ";
 
         }
 
@@ -200,4 +194,5 @@ int main () {
     delete [] puntos_min;
 
     return 0;
+
 }
