@@ -22,20 +22,43 @@
 #include <iostream> // Interacción básica con el usuario, prints, etc.
 #include <string> // Manipulación de strings.
 #include <cmath> // Operaciones matemáticas como sqrt.
+#include <vector> // Considerar alterlativas por temas de overhead.
 using namespace std;
 
 // Definición de variables a emplear durante la ejecición del programa.
-int num_puntos;
 float coord_x, coord_y;
 char coma;
 
 int main () {
+    // Definimos un arreglo de datos para almacenar los pares ordenados que ingrese el usuario.
+    const size_t filas = 2;
+    float** puntos; 
+    int num_puntos;
+
+    // Mensajes de bienvenida y solicitud de tamaño del arreglo.
     cout << "Este es un programa que le ayudará a calcular la distancia máxima y mínima entre cualquier par de puntos, entre una lista de puntos." << endl;
     cout << "¿Cuántos puntos va a introducir?: ";
     cin >> num_puntos;
-    cout << num_puntos << endl;
 
-    float puntos[num_puntos][2];
+    // Revisamos si el dato es válido.
+    if (!cin) {
+        cerr << "Ha ingresado un valor no permitido." << endl;
+        return 1;
+    }
+
+    // Revisamos si es mayor o igual a 2.
+    if (num_puntos < 2) {
+        cerr << "Debe ingresar un valor mayor o igual a 2." << endl;
+        return 1;
+    }
+
+    puntos = new float*[filas];
+    cout << "Ha ingresado " << num_puntos << "." << endl;
+
+    // Bucle para inicializar el arreglo de pares ordenados.
+    for (size_t i = 0; i < filas; ++i) {
+        puntos[i] = new float[num_puntos];
+    }
 
     // Bucle para inicializar los pares oredenados.
     for (int i = 0; i < num_puntos; i++) {
@@ -51,11 +74,18 @@ int main () {
         }
 
         // Guarda el par ordenado ingresado en la matriz de pares de puntos.
-        puntos[i][0] = coord_x;
-        puntos[i][1] = coord_y;
+        puntos[0][i] = {coord_x};
+        puntos[1][i] = {coord_y};
 
-        cout << "(" << puntos[i][0] << coma << puntos[i][1] <<")" << endl;
+        cout << "Ha ingresado el par ordenado (" << puntos[0][i] << coma << puntos[1][i] <<")" << endl;
     }
+
+    // Borramos el arreglo de pares de puntos para evitar problemas de memoria.
+    for (size_t i = 0; i < filas; ++i) {
+        delete [] puntos[i];
+    }
+
+    delete [] puntos;
 
     return 0;
 }
