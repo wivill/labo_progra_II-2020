@@ -47,12 +47,14 @@ int main () {
     if (!cin) {
         cerr << "Ha ingresado un valor no permitido." << endl;
         return 1;
+
     }
 
     // Revisa si es mayor o igual a 2.
     if (num_puntos < 2) {
         cerr << "Debe ingresar un valor mayor o igual a 2." << endl;
         return 1;
+
     }
 
     cout << "Ha ingresado " << num_puntos << "." << endl;
@@ -66,14 +68,17 @@ int main () {
     // Bucles para inicializar el arreglo de pares ordenados, así como los de menor y mayor distancia.
     for (size_t i = 0; i < filas; ++i) {
         puntos[i] = new float[num_puntos];
+
     }
 
     for (size_t j = 0; j < filas; ++j) {
         puntos_min[j] = new float[(num_puntos/2) + 1];
+
     }
 
     for (size_t k = 0; k < filas; ++k) {
         puntos_max[k] = new float[(num_puntos/2) + 1];
+
     }
 
     // Bucle para inicializar los pares oredenados.
@@ -87,6 +92,7 @@ int main () {
         if (!cin) {
             cerr << "Ha ingresado un valor no permitido." << endl;
             break; // Valorar cambiar a continue y simplemente dar menos puntos.
+
         }
 
         // Guarda el par ordenado ingresado en la matriz de pares de puntos.
@@ -94,6 +100,7 @@ int main () {
         puntos[1][l] = {coord_y};
 
         cout << "Ha ingresado el par ordenado (" << puntos[0][l] << coma << puntos[1][l] <<")" << endl;
+
     }
 
     // Cálculo de distancia máxima y mínima entre los puntos.
@@ -102,9 +109,14 @@ int main () {
             distancia = sqrt(pow(puntos[0][i] - puntos[0][j], 2) + pow(puntos[1][i] - puntos[1][j], 2));
             cout << distancia << endl;
             // Revisa si es la primera ejecución para determinar cómo se asignará la distancia calculada.
-            if (i == 0 && j == 1) {
+            if (num_puntos == 2) {
+                dist_max = distancia;
+                continue;
+
+            } else if (i == 0 && j == 1) {
                 dist_max = distancia;
                 dist_min = distancia;
+
             } else if (distancia == dist_min) {
                 // Si la distancia calculada es igual a la distancia mínima, se agrega el par de puntos resultante
                 // al arreglo de puntos de distancia mínima.
@@ -143,6 +155,7 @@ int main () {
 
             } else {
                 continue;
+
             }
 
         }
@@ -151,11 +164,13 @@ int main () {
     // Procedemos a imprimir los resultados.
     if (num_puntos == 2) {
         cout << "La distancia entre los puntos (" << puntos[0][0] << coma << puntos[1][0] << ") y (" << puntos[0][1] << coma << puntos[1][1] << ") es: " << dist_max << "." << endl;
+    
     } else {
         cout << "La distancia mínima se da entre los puntos: ";
 
         for (int m = 0; m < index_min; m = m + 2) {
             cout << "(" << puntos_min[0][m] << coma << puntos_min[1][m] << ") y (" << puntos_min[0][m + 1] << coma << puntos_min[1][m + 1] << "), ";
+
         }
 
         cout << endl;
@@ -164,9 +179,11 @@ int main () {
 
         for (int m = 0; m < index_max; m = m + 2) {
             cout << "(" << puntos_max[0][m] << coma << puntos_max[1][m] << ") y (" << puntos_max[0][m + 1] << coma << puntos_max[1][m + 1] << "), ";
+
         }
 
         cout << endl;
+
     }
 
     // Borramos el arreglo de pares de puntos para evitar problemas de memoria.
@@ -174,6 +191,7 @@ int main () {
         delete [] puntos[i];
         delete [] puntos_max[i];
         delete [] puntos_min[i];
+        
     }
 
     delete [] puntos;
