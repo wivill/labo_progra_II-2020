@@ -18,7 +18,7 @@ SRC=laboratorio2.cpp
 EXE=laboratorio2
 
 # Compila y ejecuta el programa
-all: compile_prod run
+all: compile_prod
 
 # Compila el programa con banderas para considerar advertencias como errores.
 # Optimizado para producción.

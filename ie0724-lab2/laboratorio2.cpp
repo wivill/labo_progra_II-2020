@@ -107,14 +107,26 @@ int main () {
     for (int i = 0; i < num_puntos - 1; ++i) {
         for (int j = 1; j < num_puntos; ++j) {
             distancia = sqrt(pow(puntos[0][i] - puntos[0][j], 2) + pow(puntos[1][i] - puntos[1][j], 2));
-            cout << distancia << endl;
-
-            // Revisa si es la primera ejecución para determinar cómo se asignará la distancia calculada.
+            cout << "Distancia entre los puntos (" << puntos[0][i] << coma << puntos[1][i] << ") y (" << puntos[0][j] << coma << puntos[1][j] << "): " << distancia << endl;
+            
+            // Revisa si es la primera ejecución para asignar la distancia calculada como parámetro de inicio.
             if (i == 0 && j == 1) {
-                dist_max = 0;
-                dist_min = 0;
+                dist_max = distancia;
+                dist_min = distancia;
 
-            } else if (distancia == dist_min) {
+                puntos_min[0][index_min] = puntos[0][i];
+                puntos_min[1][index_min] = puntos[1][i];
+                puntos_min[0][index_min + 1] = puntos[0][j];
+                puntos_min[1][index_min + 1] = puntos[1][j];
+                index_min = index_min + 2;
+
+                puntos_max[0][index_max] = puntos[0][i];
+                puntos_max[1][index_max] = puntos[1][i];
+                puntos_max[0][index_max + 1] = puntos[0][j];
+                puntos_max[1][index_max + 1] = puntos[1][j];
+                index_max = index_max + 2;
+
+            } else if (distancia == dist_min && distancia != 0) {
                 // Si la distancia calculada es igual a la distancia mínima, se agrega el par de puntos resultante
                 // al arreglo de puntos de distancia mínima.
                 puntos_min[0][index_min] = puntos[0][i];
@@ -123,14 +135,15 @@ int main () {
                 puntos_min[1][index_min + 1] = puntos[1][j];
                 index_min = index_min + 2; 
 
-            } else if (distancia < dist_min) {
-                // Reinicia el índice del arreglo de distancia mínima y almacena los puntos correspondiente.s
+            } else if (distancia < dist_min && distancia != 0) {
+                // Reinicia el índice del arreglo de distancia mínima y almacena los puntos correspondiente.
                 index_min = 0;
                 puntos_min[0][index_min] = puntos[0][i];
                 puntos_min[1][index_min] = puntos[1][i];
                 puntos_min[0][index_min + 1] = puntos[0][j];
                 puntos_min[1][index_min + 1] = puntos[1][j];
-                index_min = index_min + 2; 
+                index_min = index_min + 2;
+                dist_min = distancia;
 
             } else if (distancia == dist_max) {
                 // Si la distancia calculada es igual a la distancia máxima, se agrega el par de puntos resultante
@@ -149,6 +162,7 @@ int main () {
                 puntos_max[0][index_max + 1] = puntos[0][j];
                 puntos_max[1][index_max + 1] = puntos[1][j];
                 index_max = index_max + 2;
+                dist_max = distancia;
 
             } else {
                 continue;
